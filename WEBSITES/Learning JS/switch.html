@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+<link rel="stylesheet" type="text/css" href="style.css">
+        <title>Weather Advice</title>
+    </head>
+    <body>
+        <select id="weather">
+<option value="sunny">Sunny</option>
+<option value="windy">Windy</option>
+<option value="rainy">Rainy</option>
+<option value="snowy">Snowy</option>
+<option value="cloudy">Cloudy</option>
+<option value="stormy">Stormy</option>
+<option value="foggy">Foggy</option>
+<option value="hailing">Hail</option>
+<option value="tornado">Tornado</option>
+<option value="hurricane">Hurricane</option>
+<option value="tornado">Tornado</option>
+        </select>
+        <a href="#" onclick="btnPressed()">Go</a>
+        <p id="outputText">Weather Advice : </p>
+        <script>
+            function btnPressed() {
+    var weatherSelected = document.getElementById("weather").value;
+    var advice = "";
+    switch(weatherSelected) {
+        case "sunny":
+            advice = "Wear your sunglasses";
+            break;
+        case "windy":
+            advice = "Wear a jacket";
+            break;
+        case "rainy":
+            advice = "Take an umbrella";
+            break;
+        case "snowy":
+            advice = "Wear a coat";
+            break;
+        case "cloudy":
+            advice = "Wear a hat";
+            break;
+        case "stormy":
+            advice = "Wear a hat";
+            break;
+        case "foggy":
+            advice = "Wear a hat";
+            break;
+        case "hailing":
+            advice = "Wear a hat";
+            break;
+        case "tornado":
+            advice = "Stay indoors";
+            break;
+        case "hurricane":
+            advice = "Stay indoors";
+            break;
+        default:
+            advice = "";
+    }
+
+    document.getElementById("outputText").innerHTML = "Weather Advice: " + advice;
+}
+        </script>
+    </body>
+</html>
