@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<html lang="en">
+    <head>
+<link rel="stylesheet" href="style.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Calculator</title>
+    </head>
+    <body>
+        <table class="calculator">
+            <tr>
+                <td colspan="3"><input type="text" id="display" ENABLED></td>
+                <td><button id="clear">C</button></td>
+            </tr>
+            <tr>
+                <td><button class="number">7</button></td>
+                <td><button class="number">8</button></td>
+                <td><button class="number">9</button></td>
+                <td><button class="operator">/</button></td>
+            </tr>
+            <tr>
+                <td><button class="number">4</button></td>
+                <td><button class="number">5</button></td>
+                <td><button class="number">6</button></td>
+                <td><button class="operator">*</button></td>
+            </tr>
+            <tr>
+                <td><button class="number">1</button></td>
+                <td><button class="number">2</button></td>
+                <td><button class="number">3</button></td>
+                <td><button class="operator">-</button></td>
+            </tr>
+            <tr>
+                <td colspan="2"><button class="number">0</button></td>
+                <td><button class="operator">=</button></td>
+                <td><button class="operator">+</button></td>
+            </tr>
+            <script>
+                const display = document.getElementById('display');
+                const numbers = document.querySelectorAll('.number');
+                const operators = document.querySelectorAll('.operator');
+                const clearButton = document.getElementById('clear');
+
+                let currentInput = '';
+                let operator = '';
+                let firstOperand = null;
+
+                numbers.forEach(button => {
+                    button.addEventListener('click', () => {
+                        currentInput += button.textContent;
+                        display.value = currentInput;
+                    });
+                });
+
+                operators.forEach(button => {
+                    button.addEventListener('click', () => {
+                        if (button.textContent === '=') {
+                            if (firstOperand !== null && operator) {
+                                currentInput = calculate(firstOperand, parseFloat(currentInput), operator);
+                                display.value = currentInput;
+                                firstOperand = null;
+                                operator = '';
+                            }
+                        } else {
+                            if (currentInput) {
+                                firstOperand = parseFloat(currentInput);
+                                operator = button.textContent;
+                                currentInput = '';
+                            }
+                        }
+                    });
+                });
+
+                clearButton.addEventListener('click', () => {
+                    currentInput = '';
+                    firstOperand = null;
+                    operator = '';
+                    display.value = '';
+                });
+
+                function calculate(a, b, op) {
+                    switch (op) {
+                        case '+': return a + b;
+                        case '-': return a - b;
+                        case '*': return a * b;
+                        case '/': return a / b;
+                        default: return b;
+                    }
+                }
+            </script>
+    </body>
+</html>
